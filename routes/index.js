@@ -1,3 +1,4 @@
 module.exports = {
-    bord : require("./bord.routes")
+    board : require("./board.routes"),
+    user : require("./user.routes"),
 }

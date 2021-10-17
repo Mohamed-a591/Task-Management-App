@@ -1,3 +1,4 @@
 module.exports = {
-    bord : require("./bord.controller")
+    board : require("./board.controller"),
+    user : require("./user.controller")
 }

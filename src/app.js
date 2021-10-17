@@ -25,7 +25,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 
 
-app.use("/api", routes.bord)  
+app.use("/api/board", routes.board)  
+app.use("/api/user", routes.user)   
 
 
 

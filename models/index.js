@@ -1,3 +1,4 @@
 module.exports = {
-    bord : require("./bord.model")
+    Board : require("./board.model"),
+    User : require("./user.model")
 }
