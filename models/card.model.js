@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 
-const bordSchema = new mongoose.Schema({
+const cardSchema = new mongoose.Schema({
     name : {
         type:String,
         trim:true,
@@ -14,13 +14,13 @@ const bordSchema = new mongoose.Schema({
         trim: true,
         minlength: 5,
     },
-    cards: []
+    tasks: []
 },
     {timestamps:true}
 )
 
 
 
-const Board = mongoose.model("Board",  bordSchema)
+const Card = mongoose.model("Card",  cardSchema)
 
-module.exports = Board
+module.exports = Card

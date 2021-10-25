@@ -24,9 +24,8 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         trim:true,
-        //match:,
         required:true,
-        minlength:6,
+        minlength:8,
         maxlength:100 
     }, 
     phone:{
@@ -47,7 +46,7 @@ const userSchema = new mongoose.Schema({
     },
     age:{
         type:Number,
-        min:21
+        min:18
     },
     type : {
         type: String,

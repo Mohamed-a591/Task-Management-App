@@ -1,4 +1,6 @@
 module.exports = {
+    User : require("./user.model"),
     Board : require("./board.model"),
-    User : require("./user.model")
+    Card : require("./card.model"),
+    Task : require("./task.model")
 }

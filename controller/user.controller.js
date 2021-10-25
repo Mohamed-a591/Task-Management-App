@@ -1,3 +1,5 @@
+const createError = require('http-errors')
+
 const {User} = require("../models")
 
 // const emailSetting = require('../helper/email.helper')
@@ -9,9 +11,9 @@ class UserController{
         try{
             let user = new User(req.body)
             await user.save()
-            // emailSetting(user.email, generateTxt(), "new registeration" )
             res.send({apiStatus:true, message:"registered", data: user})
         }
+        
         catch(e){
             res.status(500).send({
                 apiStatus: false,
@@ -21,35 +23,52 @@ class UserController{
         }
     }
 
-    static login = async(req,res)=>{
+    static login = async(req, res, next)=>{
         try{
             const userData = await User.loginUser(req.body.email, req.body.password)
             const token = await userData.generateToken() 
             res.status(200).send({apiStatus:true, data:{userData, token}, message:"logged in success"})
         }
         catch(e){
-            res.status(500).send({apiStatus: false, data:e.message, message:"invalid login"})
+            return next(createError(500, e))
         }
     }
     
+    static logoutAll = async(req, res)=>{
 
-    // static activateUser = async(req,res) =>{
-    //     let userId = req.params.id
-    //     try{
-    //         let user = await User.findById(userId)
-    //         if(!user) res.status(404).send({apiStatus:false, message:"user not found", data:""})
-    //         user.status=true
-    //         await user.save()
-    //         res.status(200).send({apiStatus:true, message:"registered", data: user})
-    //     }
-    //     catch(e){
-    //         res.status(500).send({
-    //             apiStatus: false,
-    //             data: e.message,
-    //             message:"error in activate user"
-    //         })
-    //     }
-    // }
+        try{
+            req.user.tokens = []
+            await req.user.save()
+            res.send({
+                apiStatus:true,
+                data:"",
+                message:"user logged out"
+            })
+        }
+        catch(e){
+            res.send(e)
+        }
+    }
+
+    static logout = async(req, res)=>{
+
+        try{
+            req.user.tokens = []
+            await req.user.save()
+            res.send({
+                apiStatus:true,
+                data:"",
+                message:"user logged out"
+            })
+        }
+        catch(e){
+            res.send(e)
+        }
+    }
+
+    static uploadImg = (req, res) => {
+        res.send(req.file)  
+    }
 }
 
 module.exports = UserController
