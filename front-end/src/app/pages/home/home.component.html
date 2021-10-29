@@ -1,0 +1,64 @@
+
+<!-- <app-slider></app-slider> -->
+
+
+<div cdkDrag class="rounded-xl p-11 w-56 h-56 bg-gray-600 text-gray-50">
+    <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem cupiditate nihil velit veritatis dolorem sint amet expedita dolor quos unde?
+    </p>
+</div>
+
+
+  <div cdkDropListGroup class="flex" >
+      <div class="container-lg">
+          <div cdkDropList
+               (cdkDropListDropped)="onDrop($event)"
+               [cdkDropListData]="tasks"
+               class="bg-gray-400 h-96 w-96 overflow-auto">
+      
+              <div *ngFor="let task of tasks" cdkDrag  class="bg-blue-600 text-gray-50 py-3 px-4 my-2" >{{task}}</div>
+          </div>
+      </div>
+      <div class="container-lg">
+          <div cdkDropList
+               (cdkDropListDropped)="onDrop($event)"
+               [cdkDropListData]="tasks2"
+               class="bg-gray-400 h-96 w-96 overflow-auto">
+      
+              <div *ngFor="let task of tasks2" cdkDrag  class="bg-blue-600 text-gray-50 py-3 px-4 my-2" >{{task}}</div>
+          </div>
+      </div>
+  </div>
+
+<div class="container-lg">
+    <div class="flex">
+        <button (click)="add()" class="btn bg-blue-500 text-gray-50">+</button> 
+        <h1 class="mx-3 m-auto"> {{ val }} </h1>
+        <button (click)="minus()" class="btn bg-blue-600 px-3 text-gray-50">-</button>
+    </div>
+</div>
+
+<input [(ngModel)]="searchKey" (keyup)="filterData()" class="form-control" type="text">
+
+<div class="container-lg">
+    <table>
+        <thead>
+            <th>#</th>
+            <th>userId</th>
+            <th>id</th>
+            <th>Title</th>
+            <th>Body</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let bord of data ; let i = index" >
+                <td>{{ i+1 }}</td>
+                <td>{{ bord.userId }}</td>
+                <td>{{ bord.id }}</td>
+                <td>{{ bord.title }}</td>
+                <td>{{ bord.body }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+

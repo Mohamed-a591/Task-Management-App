@@ -1,0 +1,8 @@
+.cdk-drag-preview {
+    background-color: rgb(43, 137, 226);
+    box-shadow: 0 0 8px 2px black;
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
